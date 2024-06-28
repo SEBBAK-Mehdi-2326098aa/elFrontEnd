@@ -1,0 +1,73 @@
+html, body {
+  width: 100%;
+}
+
+img {
+  width: 50px;
+  height: 50px;
+  background-position: center;
+  background-size: cover;
+  cursor: pointer;
+  outline: 0;
+  transition-duration: .3s;
+}
+button {
+  color: white;
+  font-size: 0.6em;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  outline: 0;
+  transition-duration: .3s;
+  text-decoration: none;
+  padding: 0.5em;
+}
+
+#navbar {
+  background: linear-gradient(90deg, rgba(135, 206, 235, 1) 0%, rgba(119, 191, 224, 1) 25%, rgba(102, 176, 213, 1) 50%, rgba(85, 161, 202, 1) 75%, rgba(70, 146, 191, 1) 100%);
+
+}
+
+#navbar {
+
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem 2rem 1rem 2rem;
+  box-shadow: 0 2px 15px #000;
+  list-style: none;
+  font-size: 2.5em;
+  height: 2em;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  align-items: center;
+  position: fixed;
+  z-index: 5000;
+  width: 100%;
+  margin: 0;
+
+}
+
+#navbar a {
+  color: white;
+  text-decoration: none;
+  padding: 0.5em;
+}
+
+#logoEnedis {
+  width: 200px;
+  height: 200px;
+  background-position: center;
+  background-size: cover;
+  cursor: pointer;
+  outline: 0;
+  transition-duration: .3s;
+}
+
+#logoEnedis:hover {
+  transform: scale(1.1);
+  filter: brightness(0.5);
+}
+
+
