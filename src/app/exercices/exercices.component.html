@@ -1,7 +1,18 @@
 
 <div *ngFor="let exercice of exercices">
-  <h1>{{ exercice.category }} MEHDIII</h1>
-  <p>{{ exercice.content }}</p>
-  <p><strong>Réponse: </strong>{{ exercice.answer }}</p>
-  <hr>
+  <span>
+    {{ exercice.question}}
+  </span>
+  <mat-selection-list>
+    <mat-list-option>
+      <span>{{exercice.firstAnswer}}</span>
+    </mat-list-option>
+    <mat-list-option>
+      <span>{{exercice.secondAnswer}}</span>
+    </mat-list-option>
+    <mat-list-option>
+      <span>{{exercice.thirdAnswer}}</span>
+    </mat-list-option>
+  </mat-selection-list>
+<!--  <h3>{{singleExercice?.question}}</h3>-->
 </div>
