@@ -11,9 +11,6 @@ export class UserService {
   private apiBaseUrl = environment.apiBaseUrl;
 
   constructor(private http: HttpClient, private httpClientModule: HttpClientModule) {
-    this.getUser(1).subscribe((data) => {
-      console.log(data);
-    });
   }
 
   getUser(idUser: number): Observable<any> {

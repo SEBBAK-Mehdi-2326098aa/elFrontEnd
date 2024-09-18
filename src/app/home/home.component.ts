@@ -4,6 +4,7 @@ import {FormsModule} from "@angular/forms";
 import {ActivatedRoute, Router, RouterLink} from "@angular/router";
 import {UserService} from "../../service/userService";
 import {HttpClientModule} from "@angular/common/http";
+
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -20,16 +21,21 @@ import {HttpClientModule} from "@angular/common/http";
 
 export class HomeComponent implements OnInit {
 
+  public prenom = '';
+  public nom = '';
+
   constructor(private route: ActivatedRoute, private router: Router, private userService: UserService) {
   }
+
   ngOnInit() {
-     this.userService.getUser(1).subscribe((data) => {
-       console.log(data);
-     });
+    this.userService.getUser(1).subscribe((data) => {
+      console.log(data);
+      this.prenom = data['name'];
+      this.nom = data['lastname'];
+    });
   }
-  prenom = '';
-  nom = '';
+
   goToExercices() {
-  this.router.navigate(['home/exercices']);
-}
+    this.router.navigate(['home/exercices']);
+  }
 }
