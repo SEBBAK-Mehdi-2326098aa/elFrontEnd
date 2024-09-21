@@ -1,7 +1,6 @@
 
 h1 {
   font-size: 50px;
-  color: skyblue;
   height: 100%;
   width: 100%;
   display: flex;
@@ -16,7 +15,9 @@ h1 {
 #skills {
   width: 50%;
 }
-
+#email, #password {
+  color: skyblue;
+}
 
 #textePresentation {
   display: flex;

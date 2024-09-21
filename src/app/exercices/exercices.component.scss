@@ -6,3 +6,83 @@ h1 {
   display: flex;
   justify-content: center;
 }
+
+span {
+  font-size: 20px;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.exercise-container {
+  margin-bottom: 20px;
+  padding: 20px;
+  background-color: #0d1b2a;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.exercise-question {
+  font-size: 18px;
+  font-weight: bold;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+.card {
+  padding: 20px;
+  background-color: #1c3b57;
+  border-radius: 10px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+#mat-radio-group {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.mat-radio-button {
+  margin-bottom: 10px;
+}
+
+.radio-option {
+  background-color: #0b4e72;
+  border-radius: 5px;
+  color: #ffffff;
+  padding: 10px 20px;
+  transition: background-color 0.3s ease;
+  flex: 1;
+  text-align: center;
+  margin: 0 10px;
+}
+
+.radio-option:hover {
+  background-color: #18b0e8;
+}
+
+.content {
+  font-size: 16px;
+  color: #ffffff;
+}
+
+.submit-button {
+  display: block;
+  margin: 20px auto 0;
+  padding: 12px 25px;
+  background-color: #18b0e8;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  text-transform: uppercase;
+}
+
+.submit-button:hover {
+  background-color: #0b4e72;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}

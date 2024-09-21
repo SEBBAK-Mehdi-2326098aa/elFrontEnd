@@ -1,18 +1,19 @@
-
-<div *ngFor="let exercice of exercices">
-  <span>
-    {{ exercice.question}}
+<div *ngFor="let exercice of exercices" class="exercise-container">
+  <span class="exercise-question">
+    {{ exercice.question }}
   </span>
-  <mat-selection-list>
-    <mat-list-option>
-      <span>{{exercice.firstAnswer}}</span>
-    </mat-list-option>
-    <mat-list-option>
-      <span>{{exercice.secondAnswer}}</span>
-    </mat-list-option>
-    <mat-list-option>
-      <span>{{exercice.thirdAnswer}}</span>
-    </mat-list-option>
-  </mat-selection-list>
-<!--  <h3>{{singleExercice?.question}}</h3>-->
+  <div class="card">
+    <mat-radio-group id="mat-radio-group" [(ngModel)]="selectedAnswer" [value]="null">
+      <mat-radio-button class="radio-option" [value]="exercice.firstAnswer">
+        <span class="content">{{ exercice.firstAnswer }}</span>
+      </mat-radio-button>
+      <mat-radio-button class="radio-option" [value]="exercice.secondAnswer">
+        <span class="content">{{ exercice.secondAnswer }}</span>
+      </mat-radio-button>
+      <mat-radio-button class="radio-option" [value]="exercice.thirdAnswer">
+        <span class="content">{{ exercice.thirdAnswer }}</span>
+      </mat-radio-button>
+    </mat-radio-group>
+  </div>
+  <button class="submit-button" (click)="checkAnswer(exercice, selectedAnswer)">Vérifier</button>
 </div>
