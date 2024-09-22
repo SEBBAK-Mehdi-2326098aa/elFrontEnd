@@ -1,27 +1,55 @@
-<div *ngFor="let exercice of exercices">
-  <div [ngClass]="{'hide': exercice.isAnswered}" class="exercise-container fade-out">
-    <div class="exercise-container-wrapper">
+<div class="button-container" *ngIf="!exerciceStarted">
+  <button class="category-button" (click)="startExercice('hour_minutes', 'easy')">Conversion heures et minutes (FACILE)</button>
+  <button class="category-button" (click)="startExercice('hour_minutes', 'medium')">Conversion heures et minutes (MOYEN)</button>
+  <button class="category-button" (click)="startExercice('hour_minutes', 'hard')">Conversion heures et minutes (DIFFICILE)</button>
+  <button class="category-button" (click)="startExercice('pourcentage', 'easy')">Pourcentages <br>(FACILE)</button>
+  <button class="category-button" (click)="startExercice('pourcentage', 'medium')">Pourcentages <br>(MOYEN)</button>
+  <button class="category-button" (click)="startExercice('pourcentage', 'hard')">Pourcentages <br>(DIFFICILE)</button>
+  <button class="category-button" (click)="startExercice('mental_calculation', 'easy')">Calcul mental <br>(FACILE)</button>
+  <button class="category-button" (click)="startExercice('mental_calculation', 'medium')">Calcul mental <br>(MOYEN)</button>
+  <button class="category-button" (click)="startExercice('mental_calculation', 'hard')">Calcul mental <br>(DIFFICILE)</button>
+</div>
+
+<div *ngIf="exerciceStarted">
+  <div *ngFor="let exercice of exercices">
+    <div [ngClass]="{'hide': exercice.isAnswered}" class="exercise-container fade-out">
+      <div class="exercise-container-wrapper">
       <span class="exercise-question">
         {{ exercice.question }}
       </span>
-      <div class="card">
-        <mat-radio-group id="mat-radio-group" [(ngModel)]="selectedAnswer" [value]="null">
-          <mat-radio-button class="radio-option" [value]="exercice.firstAnswer">
-            <span class="content">{{ exercice.firstAnswer }}</span>
-          </mat-radio-button>
-          <mat-radio-button class="radio-option" [value]="exercice.secondAnswer">
-            <span class="content">{{ exercice.secondAnswer }}</span>
-          </mat-radio-button>
-          <mat-radio-button class="radio-option" [value]="exercice.thirdAnswer">
-            <span class="content">{{ exercice.thirdAnswer }}</span>
-          </mat-radio-button>
-        </mat-radio-group>
+        <div class="card">
+          <mat-radio-group id="mat-radio-group" [(ngModel)]="selectedAnswer" [value]="null">
+            <mat-radio-button class="radio-option" [value]="exercice.firstAnswer">
+              <span class="content">{{ exercice.firstAnswer }}</span>
+            </mat-radio-button>
+            <mat-radio-button class="radio-option" [value]="exercice.secondAnswer">
+              <span class="content">{{ exercice.secondAnswer }}</span>
+            </mat-radio-button>
+            <mat-radio-button class="radio-option" [value]="exercice.thirdAnswer">
+              <span class="content">{{ exercice.thirdAnswer }}</span>
+            </mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <button class="submit-button" (click)="checkAnswer(exercice, selectedAnswer)">Vérifier</button>
       </div>
-      <button class="submit-button" (click)="checkAnswer(exercice, selectedAnswer)">Vérifier</button>
     </div>
   </div>
 </div>
 
-<div class="fixed-compteur">
+<div *ngIf="exerciceStarted" class="fixed-compteur">
   {{ compteur }}
+</div>
+
+<div *ngIf="exerciceCompleted == 10 && compteur > 80">
+  <div class="end-container">
+    <span class="end-title">Félicitations !</span>
+    <span class="end-text">Vous avez terminé l'exercice avec succès !</span>
+    <button class="end-button">Recommencer</button>
+  </div>
+</div>
+
+<div class="end-container" *ngIf="exerciceCompleted == 10 && compteur < 80">
+  <span class="end-title">Dommage !</span>
+  <span class="end-text">Vous avez échoué, il faut un score minimal de 80 !</span>
+  <button (click)="returnToExercices()" class="end-button">Retourner au menu des exercices</button>
 </div>

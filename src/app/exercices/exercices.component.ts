@@ -30,9 +30,10 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 export class ExercicesComponent implements OnInit {
 
   public exercices: ExerciceModel[] = [];
-  public singleExercice: ExerciceModel | undefined;
-  public selectedAnswer: string = "";
   public compteur: number = 0;
+  public exerciceCompleted : number = 0;
+  public exerciceStarted: boolean = false;
+  public selectedAnswer: string = '';
   constructor(private route: ActivatedRoute,
               private router: Router,
               private exerciceService: ExerciceService,
@@ -40,13 +41,12 @@ export class ExercicesComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.exerciceService.getExercices().subscribe((data) => {
-      this.exercices = Object.values(data).flat();
-    });
+
   }
 
   checkAnswer(exercice: ExerciceModel, answer: string) {
 
+    this.exerciceCompleted++;
     exercice.isAnswered = true;
     this.exerciceService.checkAnswer(exercice.id, answer).subscribe((data) => {
       if (data['isCorrect']) {
@@ -73,6 +73,18 @@ export class ExercicesComponent implements OnInit {
     }, 500);
   }
 
+  returnToExercices() {
+    this.router.navigate(['/home/exercices']);
+  }
+
+  startExercice(category: string, difficulty: string) {
+
+    this.exerciceService.get10RandomExercices(category, difficulty).subscribe((data) => {
+      this.exercices = Object.values(data).flat();
+    });
+    this.exerciceStarted = true;
+
+  }
 
 
 }

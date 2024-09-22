@@ -18,6 +18,15 @@ export class ExerciceService {
     const apiUrl = `${this.apiBaseUrl}/api/exercice`;
     return this.http.get<ExerciceModel[]>(apiUrl);
   }
+
+  get10RandomExercices(category: string, difficulty: string): Observable<ExerciceModel[]> {
+    const apiUrl = `${this.apiBaseUrl}/api/exercice/ten/random`;
+    const data = {
+      category: category,
+      difficulty: difficulty
+    }
+    return this.http.post<ExerciceModel[]>(apiUrl, data);
+  }
   getExerciceById(idExercice: number): Observable<ExerciceModel> {
     const apiUrl = `${this.apiBaseUrl}/api/exercice/` + idExercice;
     return this.http.get<ExerciceModel>(apiUrl);
