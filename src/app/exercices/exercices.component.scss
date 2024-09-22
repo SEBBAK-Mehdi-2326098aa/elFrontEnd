@@ -86,3 +86,42 @@ span {
   background-color: #0b4e72;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
+
+::ng-deep .mat-mdc-snack-bar-container {
+  &.success-snackbar {
+    --mdc-snackbar-container-color: #4caf50;
+    --mat-mdc-snack-bar-button-color: #fff;
+    --mdc-snackbar-supporting-text-color: #fff;
+  }
+  &.error-snackbar {
+    --mdc-snackbar-container-color: #f44336;
+    --mat-mdc-snack-bar-button-color: #fff;
+    --mdc-snackbar-supporting-text-color: #fff;
+  }
+}
+
+.fixed-compteur {
+  position: fixed;
+  top: 100px;
+  right: 20px;
+  font-size: 50px;
+  background-color: #ffeb3b;
+  padding: 10px 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  color: green;
+  z-index: 1000;
+  font-weight: bold;
+}
+.fade-out {
+  opacity: 1;
+  height: auto;
+  transition: opacity 0.5s ease-out, height 0.5s ease-out;
+}
+
+.fade-out.hide {
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+  transition: opacity 0.5s ease-out, height 0.5s ease-out;
+}

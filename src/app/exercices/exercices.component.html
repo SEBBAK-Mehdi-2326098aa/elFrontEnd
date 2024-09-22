@@ -1,19 +1,27 @@
-<div *ngFor="let exercice of exercices" class="exercise-container">
-  <span class="exercise-question">
-    {{ exercice.question }}
-  </span>
-  <div class="card">
-    <mat-radio-group id="mat-radio-group" [(ngModel)]="selectedAnswer" [value]="null">
-      <mat-radio-button class="radio-option" [value]="exercice.firstAnswer">
-        <span class="content">{{ exercice.firstAnswer }}</span>
-      </mat-radio-button>
-      <mat-radio-button class="radio-option" [value]="exercice.secondAnswer">
-        <span class="content">{{ exercice.secondAnswer }}</span>
-      </mat-radio-button>
-      <mat-radio-button class="radio-option" [value]="exercice.thirdAnswer">
-        <span class="content">{{ exercice.thirdAnswer }}</span>
-      </mat-radio-button>
-    </mat-radio-group>
+<div *ngFor="let exercice of exercices">
+  <div [ngClass]="{'hide': exercice.isAnswered}" class="exercise-container fade-out">
+    <div class="exercise-container-wrapper">
+      <span class="exercise-question">
+        {{ exercice.question }}
+      </span>
+      <div class="card">
+        <mat-radio-group id="mat-radio-group" [(ngModel)]="selectedAnswer" [value]="null">
+          <mat-radio-button class="radio-option" [value]="exercice.firstAnswer">
+            <span class="content">{{ exercice.firstAnswer }}</span>
+          </mat-radio-button>
+          <mat-radio-button class="radio-option" [value]="exercice.secondAnswer">
+            <span class="content">{{ exercice.secondAnswer }}</span>
+          </mat-radio-button>
+          <mat-radio-button class="radio-option" [value]="exercice.thirdAnswer">
+            <span class="content">{{ exercice.thirdAnswer }}</span>
+          </mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <button class="submit-button" (click)="checkAnswer(exercice, selectedAnswer)">Vérifier</button>
+    </div>
   </div>
-  <button class="submit-button" (click)="checkAnswer(exercice, selectedAnswer)">Vérifier</button>
+</div>
+
+<div class="fixed-compteur">
+  {{ compteur }}
 </div>

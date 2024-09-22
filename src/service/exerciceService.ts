@@ -22,4 +22,11 @@ export class ExerciceService {
     const apiUrl = `${this.apiBaseUrl}/api/exercice/` + idExercice;
     return this.http.get<ExerciceModel>(apiUrl);
   }
+  checkAnswer(idExercice: number, answer: string) {
+    const apiUrl = `${this.apiBaseUrl}/api/exercice/` + idExercice + `/check`;
+    const data = {
+      answer: answer
+    }
+    return this.http.post<any>(apiUrl,data);
+  }
 }
