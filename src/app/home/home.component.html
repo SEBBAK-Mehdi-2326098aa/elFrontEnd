@@ -1,20 +1,11 @@
-<div id="presentation">
-
-
-  <h1> @if (prenom != '') {
-
-    Bienvenue, {{ prenom }} {{nom}} !
-  } @else {
-    Veuillez saisir votre prénom et nom !
-  }
-    </h1>
+<div id="presentation" *ngIf="!isLogin">
   <div class="container">
     <div class="heading">Sign In</div>
     <form action="" class="form">
-      <input required="" class="input" type="text" name="prenom" id="email" placeholder="Prenom" [(ngModel)]="prenom">
-      <input required="" class="input" type="text" name="nom" id="password" placeholder="nom" [(ngModel)]="nom">
+      <input class="input" type="text" name="email" id="email" placeholder="Email" [(ngModel)]="email">
+      <input class="input" type="password" name="password" id="password" placeholder="Mot de passe" [(ngModel)]="password">
       <span class="forgot-password"><a href="#">Forgot Password ?</a></span>
-      <input class="login-button" type="submit" value="Sign In" (click)="goToExercices()">
+      <input class="login-button" type="submit" value="Sign In" (click)="goToExercices(email, password)">
 
     </form>
     <div class="social-account-container">

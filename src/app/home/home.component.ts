@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {NgOptimizedImage} from "@angular/common";
+import {NgIf, NgOptimizedImage} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 import {ActivatedRoute, Router, RouterLink} from "@angular/router";
 import {UserService} from "../../service/userService";
 import {HttpClientModule} from "@angular/common/http";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-home',
@@ -13,6 +14,7 @@ import {HttpClientModule} from "@angular/common/http";
     FormsModule,
     HttpClientModule,
     RouterLink,
+    NgIf,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
@@ -21,20 +23,40 @@ import {HttpClientModule} from "@angular/common/http";
 
 export class HomeComponent implements OnInit {
 
+  public isLogin: boolean = false;
   public prenom = '';
   public nom = '';
+  email: string = '';
+  password: string = '';
 
-  constructor(private route: ActivatedRoute, private router: Router, private userService: UserService) {
+  constructor(private route: ActivatedRoute,
+              private router: Router,
+              private userService: UserService,
+              private matSnackBar: MatSnackBar
+  ) {
   }
 
   ngOnInit() {
-    this.userService.getUser(1).subscribe((data) => {
-      this.prenom = data.name;
-      this.nom = data.lastname
-    });
+    this.isLogin = localStorage.getItem('userEmail') !== null;
+    if (this.isLogin) {
+      this.router.navigate(['/home/exercices']);
+    }
   }
 
-  goToExercices() {
-    this.router.navigate(['home/exercices']);
+  goToExercices(email: string, password: string) {
+    this.userService.login(email, password)
+    .subscribe((data) => {
+      if (data && data['civility']) {
+        localStorage.setItem('userEmail', email);
+        localStorage.setItem('userLastName', data['lastName']);
+        localStorage.setItem('userFirstname', data['firstName']);
+        localStorage.setItem('userCivility', data['civility']);
+        this.matSnackBar.open("Connexion réussie", "Fermer", {
+          panelClass: ['success-snackbar'],
+          duration: 3000
+        });
+        this.router.navigate(['/home/exercices']);
+      }
+    });
   }
 }
