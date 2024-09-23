@@ -1,0 +1,19 @@
+<div class="account-card">
+  <div class="card-header">
+    <h2>Mon Compte</h2>
+  </div>
+  <div class="card-content">
+    <div class="avatar">
+    </div>
+    <div class="user-details">
+      <span> Civilité : {{civility}}</span>
+      <p><strong>Nom:</strong> {{ lastname }}</p>
+      <p><strong>Prénom:</strong> {{ firstname }}</p>
+      <p><strong>Email:</strong> {{ email }}</p>
+    </div>
+  </div>
+  <div class="card-footer">
+    <button class="edit-btn">Modifier mes informations</button>
+    <button class="logout-btn" (click)="logout()">Se déconnecter</button>
+  </div>
+</div>

@@ -1,0 +1,83 @@
+.account-card {
+  background-color: rgba(255, 255, 255, 0.1); /* Transparent white for dark background */
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Stronger shadow to match dark background */
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 20px;
+  text-align: center;
+  color: #fff; /* White text for contrast */
+  backdrop-filter: blur(10px); /* Glassmorphism effect */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle border to enhance card */
+}
+
+.card-header {
+  background: #0b4e72;
+  color: white;
+  padding: 15px;
+  border-radius: 12px 12px 0 0;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.card-content {
+  padding: 20px;
+}
+
+.avatar {
+  margin: 0 auto 20px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid #fff; /* White border for contrast */
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.user-details h3 {
+  font-size: 22px;
+  color: #fff; /* White text */
+}
+
+.user-details p {
+  font-size: 16px;
+  margin-top: 10px;
+  color: #ccc; /* Lighter gray for secondary text */
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 20px;
+}
+
+button {
+  background-color: rgba(76, 175, 80, 0.8); /* Semi-transparent green */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button.edit-btn {
+  background-color: rgba(33, 150, 243, 0.8); /* Semi-transparent blue */
+}
+
+button:hover {
+  background-color: rgba(69, 160, 73, 0.8);
+}
+
+button.logout-btn {
+  background-color: rgba(244, 67, 54, 0.8); /* Semi-transparent red */
+}
+
+button.logout-btn:hover {
+  background-color: rgba(229, 57, 53, 0.8);
+}
