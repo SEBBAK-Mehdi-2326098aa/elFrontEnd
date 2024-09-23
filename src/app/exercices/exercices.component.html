@@ -1,13 +1,10 @@
 <div class="button-container" *ngIf="!exerciceStarted">
-  <button class="category-button" (click)="startExercice('hour_minutes', 'easy')">Conversion heures et minutes (FACILE)</button>
-  <button class="category-button" (click)="startExercice('hour_minutes', 'medium')">Conversion heures et minutes (MOYEN)</button>
-  <button class="category-button" (click)="startExercice('hour_minutes', 'hard')">Conversion heures et minutes (DIFFICILE)</button>
-  <button class="category-button" (click)="startExercice('pourcentage', 'easy')">Pourcentages <br>(FACILE)</button>
-  <button class="category-button" (click)="startExercice('pourcentage', 'medium')">Pourcentages <br>(MOYEN)</button>
-  <button class="category-button" (click)="startExercice('pourcentage', 'hard')">Pourcentages <br>(DIFFICILE)</button>
-  <button class="category-button" (click)="startExercice('mental_calculation', 'easy')">Calcul mental <br>(FACILE)</button>
-  <button class="category-button" (click)="startExercice('mental_calculation', 'medium')">Calcul mental <br>(MOYEN)</button>
-  <button class="category-button" (click)="startExercice('mental_calculation', 'hard')">Calcul mental <br>(DIFFICILE)</button>
+  <button *ngFor="let category of categories; let i = index"
+          class="category-button"
+          [disabled]="i >= level"
+          (click)="startExercice(category.name, category.difficulty)">
+    {{ category.name }} <br>({{ category.label }})
+  </button>
 </div>
 
 <div *ngIf="exerciceStarted">

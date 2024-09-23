@@ -25,4 +25,11 @@ export class HeaderComponent {
   }
 
 
+  goToExercices() {
+    this.router.navigate(['/home/exercices']);
+  }
+
+  goToAccount() {
+    this.router.navigate(['/home/account']);
+  }
 }

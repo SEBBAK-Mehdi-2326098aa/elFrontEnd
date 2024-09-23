@@ -47,15 +47,22 @@ export class HomeComponent implements OnInit {
     this.userService.login(email, password)
     .subscribe((data) => {
       if (data && data['civility']) {
-        localStorage.setItem('userEmail', email);
-        localStorage.setItem('userLastName', data['lastName']);
-        localStorage.setItem('userFirstname', data['firstName']);
+        localStorage.setItem('userEmail', data['email']);
+        localStorage.setItem('userLastName', data['lastname']);
+        localStorage.setItem('userFirstname', data['name']);
         localStorage.setItem('userCivility', data['civility']);
+        localStorage.setItem('userLevel', data['level']);
         this.matSnackBar.open("Connexion réussie", "Fermer", {
           panelClass: ['success-snackbar'],
           duration: 3000
         });
         this.router.navigate(['/home/exercices']);
+      }
+      else {
+        this.matSnackBar.open("Identifiants incorrects", "Fermer", {
+          panelClass: ['error-snackbar'],
+          duration: 3000
+        });
       }
     });
   }

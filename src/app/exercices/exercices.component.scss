@@ -1,27 +1,31 @@
 .button-container {
   display: flex;
   flex-direction: column;
-  gap: 15px; /* Espace entre les boutons */
-  width: 300px; /* Largeur des boutons */
-  margin: 0 auto; /* Centrer le conteneur */
+  gap: 15px;
+  width: 300px;
+  margin: 0 auto;
 }
 
 .category-button {
-  background-color: #007bff; /* Couleur de fond */
-  color: white; /* Couleur du texte */
-  border: none; /* Supprime les bordures */
-  padding: 15px; /* Espace intérieur */
-  font-size: 16px; /* Taille de la police */
-  font-weight: bold; /* Texte en gras */
-  border-radius: 5px; /* Coins arrondis */
-  cursor: pointer; /* Change le curseur au survol */
-  transition: background-color 0.3s ease; /* Transition pour l'effet de survol */
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 15px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .category-button:hover {
-  background-color: #0056b3; /* Couleur de fond au survol */
+  background-color: #0056b3;
 }
 
+.category-button:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+}
 
 span {
   font-size: 20px;
@@ -60,6 +64,8 @@ span {
 }
 
 .mat-radio-button {
+
+
   margin-bottom: 10px;
 }
 

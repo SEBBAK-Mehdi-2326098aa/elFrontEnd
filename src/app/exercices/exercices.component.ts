@@ -29,11 +29,27 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 })
 export class ExercicesComponent implements OnInit {
 
+  isLogin = localStorage.getItem('userEmail') !== null;
   public exercices: ExerciceModel[] = [];
   public compteur: number = 0;
   public exerciceCompleted : number = 0;
   public exerciceStarted: boolean = false;
   public selectedAnswer: string = '';
+  public level : number = 1;
+
+
+  public categories = [
+    { name: 'Conversion heures et minutes', difficulty: 'easy', label: 'FACILE' },
+    { name: 'Conversion heures et minutes', difficulty: 'medium', label: 'MOYEN' },
+    { name: 'Conversion heures et minutes', difficulty: 'hard', label: 'DIFFICILE' },
+    { name: 'Pourcentages', difficulty: 'easy', label: 'FACILE' },
+    { name: 'Pourcentages', difficulty: 'medium', label: 'MOYEN' },
+    { name: 'Pourcentages', difficulty: 'hard', label: 'DIFFICILE' },
+    { name: 'Calcul mental', difficulty: 'easy', label: 'FACILE' },
+    { name: 'Calcul mental', difficulty: 'medium', label: 'MOYEN' },
+    { name: 'Calcul mental', difficulty: 'hard', label: 'DIFFICILE' }
+  ];
+
   constructor(private route: ActivatedRoute,
               private router: Router,
               private exerciceService: ExerciceService,
@@ -42,6 +58,11 @@ export class ExercicesComponent implements OnInit {
 
   ngOnInit() {
 
+    if (!this.isLogin) {
+      this.router.navigate(['/home']);
+    }
+    const storedLevel = localStorage.getItem('userLevel');
+    this.level = storedLevel !== null ? +storedLevel : 1;
   }
 
   checkAnswer(exercice: ExerciceModel, answer: string) {
@@ -78,7 +99,6 @@ export class ExercicesComponent implements OnInit {
   }
 
   startExercice(category: string, difficulty: string) {
-
     this.exerciceService.get10RandomExercices(category, difficulty).subscribe((data) => {
       this.exercices = Object.values(data).flat();
     });
