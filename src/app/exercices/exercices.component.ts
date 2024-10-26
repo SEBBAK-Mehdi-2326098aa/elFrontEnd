@@ -39,15 +39,15 @@ export class ExercicesComponent implements OnInit {
 
 
   public categories = [
-    { name: 'Conversion heures et minutes', difficulty: 'easy', label: 'FACILE' },
-    { name: 'Conversion heures et minutes', difficulty: 'medium', label: 'MOYEN' },
-    { name: 'Conversion heures et minutes', difficulty: 'hard', label: 'DIFFICILE' },
-    { name: 'Pourcentages', difficulty: 'easy', label: 'FACILE' },
-    { name: 'Pourcentages', difficulty: 'medium', label: 'MOYEN' },
-    { name: 'Pourcentages', difficulty: 'hard', label: 'DIFFICILE' },
-    { name: 'Calcul mental', difficulty: 'easy', label: 'FACILE' },
-    { name: 'Calcul mental', difficulty: 'medium', label: 'MOYEN' },
-    { name: 'Calcul mental', difficulty: 'hard', label: 'DIFFICILE' }
+    { name: 'Conversion heures et minutes', difficulty: 'easy', label: 'FACILE', id: 1 },
+    { name: 'Conversion heures et minutes', difficulty: 'medium', label: 'MOYEN', id: 2 },
+    { name: 'Conversion heures et minutes', difficulty: 'hard', label: 'DIFFICILE', id: 3 },
+    { name: 'Pourcentages', difficulty: 'easy', label: 'FACILE', id: 4 },
+    { name: 'Pourcentages', difficulty: 'medium', label: 'MOYEN', id: 5 },
+    { name: 'Pourcentages', difficulty: 'hard', label: 'DIFFICILE', id: 6 },
+    { name: 'Calcul mental', difficulty: 'easy', label: 'FACILE', id: 7 },
+    { name: 'Calcul mental', difficulty: 'medium', label: 'MOYEN', id: 8 },
+    { name: 'Calcul mental', difficulty: 'hard', label: 'DIFFICILE', id: 9 },
   ];
 
   constructor(private route: ActivatedRoute,
@@ -98,13 +98,26 @@ export class ExercicesComponent implements OnInit {
     this.router.navigate(['/home/exercices']);
   }
 
-  startExercice(category: string, difficulty: string) {
+  startExercice(category: string, difficulty: string, selectedLevel: number) {
     this.exerciceService.get10RandomExercices(category, difficulty).subscribe((data) => {
       this.exercices = Object.values(data).flat();
     });
     this.exerciceStarted = true;
-
+    localStorage.setItem('selectedLevel', selectedLevel.toString());
   }
 
 
+  saveResult() {
+    const userId = localStorage.getItem('userId');
+    const levelCompleted = localStorage.getItem('selectedLevel');
+    if (levelCompleted !== null && userId !== null) {
+      const numberLevel = +levelCompleted;
+      const numberId = +userId
+      this.exerciceService.saveResult(numberId, numberLevel).subscribe((data) => {
+        console.log(data);
+        this.router.navigate(['/home/account']);
+      });
+    }
+
+  }
 }

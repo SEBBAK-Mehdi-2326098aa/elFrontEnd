@@ -38,4 +38,12 @@ export class ExerciceService {
     }
     return this.http.post<any>(apiUrl,data);
   }
+
+  saveResult(userId: number, level: number) {
+    const apiUrl = `${this.apiBaseUrl}/api/user/${userId}/update/level`;
+    const data = {
+      level: level
+    }
+    return this.http.put<any>(apiUrl, data);
+  }
 }

@@ -52,6 +52,7 @@ export class HomeComponent implements OnInit {
         localStorage.setItem('userFirstname', data['name']);
         localStorage.setItem('userCivility', data['civility']);
         localStorage.setItem('userLevel', data['level']);
+        localStorage.setItem('userId', data['id']);
         this.matSnackBar.open("Connexion réussie", "Fermer", {
           panelClass: ['success-snackbar'],
           duration: 3000
